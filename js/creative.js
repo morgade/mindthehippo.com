@@ -44,5 +44,21 @@
         scale: 0.3,
         distance: '0px'
     }, 300);
+    
+    var portfolios = [];
+    $(".portfolio-box-caption").each(function (i, obj) {
+        portfolios.push({node: $(this), offset: $(this).offset().top});
+    });
+    
+    var h = $( window ).height();
+    var $w = $(window).scroll(function(){
+        $.each(portfolios, function (i, port) {
+            if ( $w.scrollTop() > port.offset - (h/3) ) {   
+                port.node.addClass("md-reveal");
+            } else {
+                port.node.removeClass("md-reveal");
+            }
+        });
+    });
 
 })(jQuery); // End of use strict
